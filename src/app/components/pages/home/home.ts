@@ -25,6 +25,5 @@ export class Home {
   }
   onShowCategoria(cat:string):void {
     this.categoria = cat;
-    console.log(cat);
   }
 }

@@ -6,6 +6,6 @@ export interface ItemCarrello {
     prodotto: string;
     nome: string;
     prezzo: number;
-    quantità: number;
+    quantita: number;
     id: number;
 }
