@@ -1,0 +1,7 @@
+.btnCol{
+    cursor: pointer;
+    margin: 3px;
+}
+.btnCol :hover{
+    background-color: lightgray;
+}

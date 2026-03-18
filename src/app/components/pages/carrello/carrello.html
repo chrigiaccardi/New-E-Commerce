@@ -1,0 +1,12 @@
+@if (carrello.items.length) {
+    <mat-card>
+        
+    </mat-card>
+}
+@if (!carrello.items.length) {
+    <mat-card class="p-6 mx-6 text-center">
+        <p class="mb-4">Il tuo Carrello è VUOTO</p>
+        <button mat-raised-button routerLink="/" class="">Inizia il tuo Shopping Qui</button>
+    </mat-card>
+}
+

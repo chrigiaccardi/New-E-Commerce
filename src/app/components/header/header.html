@@ -1,0 +1,43 @@
+<div class="mx-auto max-w-7xl border-x">
+    <mat-toolbar class="justify-between">
+    <a routerLink="home">GC Store</a>
+    <button mat-icon-button [matBadge]="1" [matMenuTriggerFor]="menu">
+        <mat-icon>shopping_cart</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <div class="p-3 divide-y divide-solid">
+            <div class="pb-3 flex justify-between">
+                <span class="mr-16">1 Elemento</span>
+                <a routerLink="carrello">Visualizza carrello</a>
+            </div>
+            <div class="py-3">
+                <div class="flex justify-between font-light mb-2">
+                    Tastiera x 1
+                    <span class="font-bold">{{ 47 | currency:'EUR':'symbol' }}</span>
+                </div>
+                <div class="flex justify-between font-light mb-2">
+                    Mouse x 1
+                    <span class="font-bold">{{ 20 | currency:'EUR':'symbol' }}</span>
+                </div>
+                <div class="flex justify-between font-light mb-2">
+                    Maglia x 1
+                    <span class="font-bold">{{ 35 | currency:'EUR':'symbol' }}</span>
+                </div>
+            </div>
+            <div class="py-3 flex justify-between font-light">
+                Totale:
+                <span class="font-bold">{{ 92 | currency:'EUR':'symbol'}}</span>
+            </div>
+            <div class="pt-3 flex justify-between">
+                <button class="bg-rose-700 text-white rounded-full w-9 h-9">
+                    <mat-icon>remove_shopping_cart</mat-icon>
+                </button>
+                <button routerLink="cart"
+                class="bg-green-700 text-white rounded-full w-9 h-9">
+                    <mat-icon>shopping_cart</mat-icon>
+                </button>
+            </div>
+        </div>
+    </mat-menu>
+</mat-toolbar>
+</div>

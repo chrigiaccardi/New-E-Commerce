@@ -1,0 +1,28 @@
+<mat-drawer-container [autosize]="true" class="min-h-full max-w-7xl mx-auto border-x">
+    <mat-drawer mode="side" opened class="p-6">
+        <app-filters (showCategorie)="onShowCategoria($event)"/>
+    </mat-drawer>
+    <mat-drawer-content class="p-6">
+        <app-product-header (conteggioColonne)="onConteggioColonneCambia($event)"/>
+        <mat-grid-list gutterSize="16" [cols]="colonne" [rowHeight]="altezzaRighe">
+            <mat-grid-tile>
+                <app-box-prodotto class="w-full" [modTuttoSchermo]="colonne === 1"/>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <app-box-prodotto class="w-full" [modTuttoSchermo]="colonne === 1"/>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <app-box-prodotto class="w-full" [modTuttoSchermo]="colonne === 1"/>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <app-box-prodotto class="w-full" [modTuttoSchermo]="colonne === 1"/>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <app-box-prodotto class="w-full" [modTuttoSchermo]="colonne === 1"/>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <app-box-prodotto class="w-full" [modTuttoSchermo]="colonne === 1"/>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-drawer-content>
+</mat-drawer-container>
