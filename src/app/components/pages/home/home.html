@@ -6,22 +6,7 @@
         <app-product-header (conteggioColonne)="onConteggioColonneCambia($event)"/>
         <mat-grid-list gutterSize="16" [cols]="colonne" [rowHeight]="altezzaRighe">
             <mat-grid-tile>
-                <app-box-prodotto class="w-full" [modTuttoSchermo]="colonne === 1"/>
-            </mat-grid-tile>
-            <mat-grid-tile>
-                <app-box-prodotto class="w-full" [modTuttoSchermo]="colonne === 1"/>
-            </mat-grid-tile>
-            <mat-grid-tile>
-                <app-box-prodotto class="w-full" [modTuttoSchermo]="colonne === 1"/>
-            </mat-grid-tile>
-            <mat-grid-tile>
-                <app-box-prodotto class="w-full" [modTuttoSchermo]="colonne === 1"/>
-            </mat-grid-tile>
-            <mat-grid-tile>
-                <app-box-prodotto class="w-full" [modTuttoSchermo]="colonne === 1"/>
-            </mat-grid-tile>
-            <mat-grid-tile>
-                <app-box-prodotto class="w-full" [modTuttoSchermo]="colonne === 1"/>
+                <app-box-prodotto (addCarrello)="aggiungiAlCarrello($event)" class="w-full" [modTuttoSchermo]="colonne === 1"/>
             </mat-grid-tile>
         </mat-grid-list>
     </mat-drawer-content>
