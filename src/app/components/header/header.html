@@ -1,7 +1,7 @@
 <div class="mx-auto max-w-7xl border-x">
     <mat-toolbar class="justify-between">
     <a routerLink="/">GC Store</a>
-    <button mat-icon-button [matBadge]="1" [matMenuTriggerFor]="menu">
+    <button mat-icon-button [matBadge]="quantitaItems" [matBadgeHidden]="!quantitaItems" [matMenuTriggerFor]="menu">
         <mat-icon>shopping_cart</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
@@ -13,26 +13,22 @@
                 </span>
                 <a routerLink="carrello">Visualizza carrello</a>
             </div>
-            <div class="py-3">
-                <div class="flex justify-between font-light mb-2">
-                    Tastiera x 1
-                    <span class="font-bold">{{ 47 | currency:'EUR':'symbol' }}</span>
+            @if (carrello.items.length) {
+                 <div class="py-3">
+                    @for (item of carrello.items; track item.id) { 
+                        <div class="flex justify-between font-light mb-2">
+                            {{item.nome}} x {{item.quantita}}
+                            <span class="font-bold">{{ item.prezzo| currency:'EUR':'symbol' }}</span>
+                        </div>
+                    }
                 </div>
-                <div class="flex justify-between font-light mb-2">
-                    Mouse x 1
-                    <span class="font-bold">{{ 20 | currency:'EUR':'symbol' }}</span>
-                </div>
-                <div class="flex justify-between font-light mb-2">
-                    Maglia x 1
-                    <span class="font-bold">{{ 35 | currency:'EUR':'symbol' }}</span>
-                </div>
-            </div>
+            }
             <div class="py-3 flex justify-between font-light">
                 Totale:
-                <span class="font-bold">{{ 92 | currency:'EUR':'symbol'}}</span>
+                <span class="font-bold">{{ sommaTotale(carrello.items) | currency:'EUR':'symbol'}}</span>
             </div>
             <div class="pt-3 flex justify-between">
-                <button class="bg-rose-700 text-white rounded-full w-9 h-9">
+                <button (click)="pulisciCarrello()" class="bg-rose-700 text-white rounded-full w-9 h-9">
                     <mat-icon>remove_shopping_cart</mat-icon>
                 </button>
                 <button routerLink="cart"

@@ -21,6 +21,16 @@ export class CarrelloService {
     }
     this.carrello.next({ items });
     this._snackBar.open(' 1 Articolo Aggiunto al Carrello', 'Ok', { duration: 3000 });
-    console.log(this.carrello.value)
+  }
+
+   sommaTotale(items: Array<ItemCarrello>):number{
+    return items.map((item) =>
+      item.prezzo * item.quantita).reduce((prev, current) =>
+        prev + current, 0)
+   }
+  
+  pulisciCarrello():void {
+    this.carrello.next({ items: [] });
+    this._snackBar.open('Il Carrello è stato SVUOTATO', 'Ok', {duration: 3000})
   }
 }

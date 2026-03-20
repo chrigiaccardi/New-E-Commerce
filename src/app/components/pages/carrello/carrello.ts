@@ -8,6 +8,8 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 
+import { CarrelloService } from '../../../services/carrello-service';
+
 
 @Component({
   selector: 'app-carrello',
@@ -16,6 +18,8 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './carrello.css',
 })
 export class Carrello implements OnInit{
+constructor(private carrelloService: CarrelloService){}
+
   carrello: intCarrello = {
     items: [
       {
@@ -50,10 +54,8 @@ export class Carrello implements OnInit{
     this.dataSource = this.carrello.items
   }
 
-  sommaTotale(items: Array<ItemCarrello>):number{
-    return items.map((item) =>
-      item.prezzo * item.quantita).reduce((prev, current) =>
-        prev + current, 0)
+   sommaTotale(items: Array<ItemCarrello>):number{
+    return this.carrelloService.sommaTotale(items)
   }
 }
 
