@@ -1,13 +1,16 @@
 <div class="mx-auto max-w-7xl border-x">
     <mat-toolbar class="justify-between">
-    <a routerLink="home">GC Store</a>
+    <a routerLink="/">GC Store</a>
     <button mat-icon-button [matBadge]="1" [matMenuTriggerFor]="menu">
         <mat-icon>shopping_cart</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
         <div class="p-3 divide-y divide-solid">
             <div class="pb-3 flex justify-between">
-                <span class="mr-16">1 Elemento</span>
+                <span class="mr-16">
+                    @if (quantitaItems === 1) {{{quantitaItems}} Articolo}
+                    @else {{{quantitaItems}} Articoli}
+                </span>
                 <a routerLink="carrello">Visualizza carrello</a>
             </div>
             <div class="py-3">

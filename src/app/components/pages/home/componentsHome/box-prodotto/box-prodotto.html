@@ -1,7 +1,7 @@
 <mat-card [ngClass]="{'text-center':!modTuttoSchermo}">
     <div [ngClass]="{'flex': modTuttoSchermo}">
-        <img class="mb-1 h-[200px] mx-auto" src="https://placehold.co/150x150" alt="" 
-        [ngClass]="{'h-[200px]':!modTuttoSchermo,'h-[360px]':modTuttoSchermo}">
+        <img class="mb-1 h-[200px] mx-auto" src="https://placehold.co/150x150" alt=""
+            [ngClass]="{'h-[200px]':!modTuttoSchermo,'h-[360px]':modTuttoSchermo}">
         <div class="w-full px-6" [ngClass]="{'px-8 flex flex-col justify-between': modTuttoSchermo}">
             <div>
                 <h5>Scarpe</h5>
@@ -11,7 +11,7 @@
             <div class="flex justify-between">
                 <span class="text-red-400">{{35 | currency:'EUR':'symbol'}}</span>
                 <button>
-                    <mat-icon class="text-gray-500">shopping_cart</mat-icon>
+                    <mat-icon (click)="aggiungiAlCarrello()" class="text-gray-500 cursor-pointer">shopping_cart</mat-icon>
                 </button>
             </div>
         </div>

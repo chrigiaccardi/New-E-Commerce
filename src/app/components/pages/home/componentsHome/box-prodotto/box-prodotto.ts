@@ -25,6 +25,6 @@ export class BoxProdotto {
   @Output() addCarrello = new EventEmitter();
 
   aggiungiAlCarrello(): void{
-    
+    this.addCarrello.emit(this.prodotto)
   }
 }
