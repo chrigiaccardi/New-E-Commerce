@@ -31,11 +31,11 @@
             <ng-container matColumnDef="quantita">
                 <th mat-header-cell *matHeaderCellDef>Quantità</th>
                 <td mat-cell *matCellDef="let elemento">
-                    <button mat-icon-button>
+                    <button (click)="quantitaMeno1(elemento)" mat-icon-button>
                         <mat-icon>remove</mat-icon>
                     </button>
                     <span>{{elemento.quantita}}</span>
-                    <button mat-icon-button>
+                    <button (click)="quantitaPiu1(elemento)" mat-icon-button>
                         <mat-icon>add</mat-icon>
                     </button>
                 </td>
@@ -58,12 +58,12 @@
 
             <ng-container matColumnDef="azione">
                 <th mat-header-cell *matHeaderCellDef>
-                    <button mat-button class="float-right btn-rosso">
+                    <button mat-button (click)="pulisciCarrello()" class="float-right btn-rosso">
                         Pulisci Carrello
                     </button>
                 </th>
                 <td mat-cell *matCellDef="let elemento">
-                    <button mat-mini-fab class="float-right btn-rosso">
+                    <button (click)="rimuoviArticoloDalCarrello(elemento)" mat-mini-fab class="float-right btn-rosso">
                         <mat-icon>close</mat-icon>
                     </button>
                 </td>
@@ -83,7 +83,7 @@
 }
 @if (!carrello.items.length) {
     <mat-card class="p-6 max-w-7xl text-center mx-auto">
-        <p class="mb-4">Il tuo Carrello è VUOTO</p>
+        <p class="mb-4">Non ci sono articoli nel Carrello</p>
         <button mat-raised-button routerLink="/" class="">Inizia il tuo Shopping Qui</button>
     </mat-card>
 }

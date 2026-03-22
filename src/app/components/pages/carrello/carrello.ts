@@ -8,7 +8,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 
-import { CarrelloService } from '../../../services/carrello-service';
+import { CarrelloService } from '../../../services/carrello/carrello-service';
 
 
 @Component({
@@ -51,11 +51,30 @@ constructor(private carrelloService: CarrelloService){}
   colonneTabella: Array<string> = ['prodotto','nome','prezzo', 'quantita', 'totale','azione']
   
   ngOnInit(): void{
-    this.dataSource = this.carrello.items
+    this.carrelloService.carrello.subscribe((_carrello: intCarrello) => {
+      this.carrello = _carrello;
+      this.dataSource = this.carrello.items;
+    })
   }
 
    sommaTotale(items: Array<ItemCarrello>):number{
     return this.carrelloService.sommaTotale(items)
+   }
+  
+  pulisciCarrello():void {
+    return this.carrelloService.pulisciCarrello();
+  }
+
+  rimuoviArticoloDalCarrello(item: ItemCarrello):void {
+    this.carrelloService.rimuoviArticolo(item);
+  }
+
+  quantitaPiu1(item:ItemCarrello): void{
+    this.carrelloService.aggiungiAlCarrello(item)
+  }
+
+  quantitaMeno1(item: ItemCarrello): void{
+    this.carrelloService.rimuoviQuantita(item);
   }
 }
 

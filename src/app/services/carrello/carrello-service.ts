@@ -33,4 +33,39 @@ export class CarrelloService {
     this.carrello.next({ items: [] });
     this._snackBar.open('Il Carrello è stato SVUOTATO', 'Ok', {duration: 3000})
   }
+
+  rimuoviArticolo(item: ItemCarrello, update = true):Array<ItemCarrello> {
+    const elementiFiltrati = this.carrello.value.items.filter((_item) => _item.id !== item.id);
+
+    if (update) {
+    this.carrello.next({ items: elementiFiltrati });
+    this._snackBar.open('Articolo eliminato dal Carrello', 'Ok', { duration: 3000 })
+    }
+
+    return elementiFiltrati;
+  };
+
+  rimuoviQuantita(item: ItemCarrello):void {
+    let rimozioneItem: ItemCarrello | undefined;
+
+    let elementiFiltrati = this.carrello.value.items.map((_item) => {
+      if (_item.id === item.id) {
+        _item.quantita --;
+        if (_item.quantita === 0) {
+          rimozioneItem = _item
+        };
+      };
+      console.log(_item) 
+      return _item
+    });
+
+    if (rimozioneItem) {
+      elementiFiltrati = this.rimuoviArticolo(rimozioneItem, false);
+    };
+
+    this.carrello.next({ items: elementiFiltrati });
+    this._snackBar.open('1 Articolo Rimosso dal Carrello', 'Ok', { duration: 3000 });
+  }
+
+  
 }
