@@ -13,14 +13,7 @@ import { IntProdotto } from '../../../../../models/int-prodotto';
 export class BoxProdotto {
   @Input() modTuttoSchermo = false
 
-  prodotto: IntProdotto | undefined = {
-       id: 1,
-    titolo: 'Adidas Run',
-    prezzo: 99.99,
-    categoria: 'Scarpe',
-    descrizione: 'Scarpe per la corsa di tutti i giorni',
-    immagine: 'https://assets.adidas.com/images/w_600,f_auto,q_auto/e138c7d37c9e4115ad18d7628079a77d_faec/Scarpe_Adizero_Adios_Pro_4_Bianco_JR1094_db01_00_standard.jpg'
-  }
+  @Input() prodotto: IntProdotto | undefined;
 
   @Output() addCarrello = new EventEmitter();
 

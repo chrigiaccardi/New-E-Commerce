@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { intCarrello, ItemCarrello } from '../models/item-carrello';
+import { intCarrello, ItemCarrello } from '../../models/item-carrello';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +36,7 @@ export class CarrelloService {
   }
 
   rimuoviArticolo(item: ItemCarrello, update = true):Array<ItemCarrello> {
-    const elementiFiltrati = this.carrello.value.items.filter((_item) => _item.id !== item.id);
+    const elementiFiltrati = this.carrello.value.items.filter((_item: ItemCarrello) => _item.id !== item.id);
 
     if (update) {
     this.carrello.next({ items: elementiFiltrati });
@@ -48,7 +49,7 @@ export class CarrelloService {
   rimuoviQuantita(item: ItemCarrello):void {
     let rimozioneItem: ItemCarrello | undefined;
 
-    let elementiFiltrati = this.carrello.value.items.map((_item) => {
+    let elementiFiltrati = this.carrello.value.items.map((_item:ItemCarrello) => {
       if (_item.id === item.id) {
         _item.quantita --;
         if (_item.quantita === 0) {

@@ -1,11 +1,13 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ProductHeader } from './componentsHome/product-header/product-header/product-header';
 import { Filters } from "./componentsHome/product-header/filters/filters";
 import { MatGridListModule } from '@angular/material/grid-list';
 import { BoxProdotto } from './componentsHome/box-prodotto/box-prodotto';
-import { CarrelloService } from '../../../services/carrello-service';
+import { CarrelloService } from '../../../services/carrello/carrello-service';
 import { IntProdotto } from '../../../models/int-prodotto';
+import { Subscription } from 'rxjs';
+import { Store } from '../../../services/store/store-service';
 
 const ALTEZZA_RIGHE: {[id: number]:number} = {1: 400, 3: 335, 4: 350}
 
@@ -15,12 +17,31 @@ const ALTEZZA_RIGHE: {[id: number]:number} = {1: 400, 3: 335, 4: 350}
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home {
+export class Home implements OnInit, OnDestroy{
   colonne: number = 3;
   altezzaRighe = ALTEZZA_RIGHE[this.colonne]
   categoria: string | undefined;
+  prodotti: Array<IntProdotto> | undefined;
+  ordinamento = 'desc';
+  nProdotti = '12'
+  sottoscrizioneProdotti: Subscription | undefined;
 
-  carrelloService = inject(CarrelloService)
+  constructor(private carrelloService: CarrelloService, private storeService: Store) { }
+  
+  prendiProdotti():void {
+    this.sottoscrizioneProdotti =  this.storeService.richiamoProdotti(this.nProdotti, this.ordinamento).subscribe((_prodotti) => {
+    this.prodotti = _prodotti} )
+}
+
+  ngOnInit(): void {
+    this.prendiProdotti();
+  }
+
+  ngOnDestroy(): void {
+    if (this.sottoscrizioneProdotti) {
+      this.sottoscrizioneProdotti.unsubscribe();
+    }  
+  }
 
   onConteggioColonneCambia(nCol: number):void {
     this.colonne = nCol;
@@ -34,9 +55,9 @@ export class Home {
 
   aggiungiAlCarrello(prodotto: IntProdotto):void {
     this.carrelloService.aggiungiAlCarrello({
-      prodotto: prodotto.immagine,
-      nome: prodotto.titolo,
-      prezzo: prodotto.prezzo,
+      prodotto: prodotto.image,
+      nome: prodotto.title,
+      prezzo: prodotto.price,
       quantita: 1,
       id: prodotto.id
     })
