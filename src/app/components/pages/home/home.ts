@@ -62,4 +62,14 @@ export class Home implements OnInit, OnDestroy{
       id: prodotto.id
     })
   }
+
+  onCambioVisualProdotti(conteggioItem:number):void {
+    this.nProdotti = conteggioItem.toString();
+    this.prendiProdotti();
+  }
+
+  onCambioOrdinamento(ordine: string):void {
+    this.ordinamento = ordine;
+    this.prendiProdotti();
+  }
 }

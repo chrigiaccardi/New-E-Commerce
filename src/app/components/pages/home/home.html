@@ -3,7 +3,10 @@
         <app-filters (showCategorie)="onShowCategoria($event)"/>
     </mat-drawer>
     <mat-drawer-content class="p-6">
-        <app-product-header (conteggioColonne)="onConteggioColonneCambia($event)"/>
+        <app-product-header 
+        (cambioVisualProdotti)="onCambioVisualProdotti($event)"
+        (cambioOrdinamento)="onCambioOrdinamento($event)"
+        (conteggioColonne)="onConteggioColonneCambia($event)"/>
         <mat-grid-list gutterSize="16" [cols]="colonne" [rowHeight]="altezzaRighe">
             @for (prodotto of prodotti; track prodotto.id) {
                <mat-grid-tile>

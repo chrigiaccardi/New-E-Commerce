@@ -13,6 +13,9 @@ import { MatIcon } from "@angular/material/icon";
 })
 export class ProductHeader {
   @Output() conteggioColonne = new EventEmitter<number>();
+  @Output() cambioVisualProdotti = new EventEmitter<number>();
+  @Output() cambioOrdinamento = new EventEmitter<string>();
+  
   ordine: string = '';
   conteggioItem: number = 12
 
@@ -22,9 +25,11 @@ export class ProductHeader {
   
   aggiornaOrdine(ordine: string): void {
     this.ordine = ordine
+    this.cambioOrdinamento.emit(ordine)
   }
 
-  aggiornaNItems(count: number):void {
-    this.conteggioItem = count
+  aggiornaNItems(conteggioItem: number):void {
+    this.conteggioItem = conteggioItem
+    this.cambioVisualProdotti.emit(conteggioItem)
   }
 }

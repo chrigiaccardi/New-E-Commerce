@@ -4,8 +4,8 @@
             [ngClass]="{'h-[200px]':!modTuttoSchermo,'h-[360px]':modTuttoSchermo}">
         <div class="w-full px-6" [ngClass]="{'px-8 flex flex-col justify-between': modTuttoSchermo}">
             <div>
-                <h5>{{prodotto.category}}</h5>
-                <p class="truncate hover:whitespace-normal">Snickers</p>
+                <h5 class="mb-2">{{prodotto.category}}</h5>
+                <p class="truncate hover:whitespace-normal mb-2">{{prodotto.title}}</p>
                 @if (modTuttoSchermo) {<p>{{prodotto.description}}</p>}
             </div>
             <div class="flex justify-between">
