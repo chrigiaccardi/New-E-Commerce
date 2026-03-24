@@ -7,7 +7,7 @@ import { BoxProdotto } from './componentsHome/box-prodotto/box-prodotto';
 import { CarrelloService } from '../../../services/carrello/carrello-service';
 import { IntProdotto } from '../../../models/int-prodotto';
 import { Subscription } from 'rxjs';
-import { Store } from '../../../services/store/store-service';
+import { storeService } from '../../../services/store/store-service';
 
 const ALTEZZA_RIGHE: {[id: number]:number} = {1: 400, 3: 335, 4: 350}
 
@@ -26,10 +26,10 @@ export class Home implements OnInit, OnDestroy{
   nProdotti = '12'
   sottoscrizioneProdotti: Subscription | undefined;
 
-  constructor(private carrelloService: CarrelloService, private storeService: Store) { }
+  constructor(private carrelloService: CarrelloService, private storeService: storeService) { }
   
   prendiProdotti():void {
-    this.sottoscrizioneProdotti =  this.storeService.richiamoProdotti(this.nProdotti, this.ordinamento).subscribe((_prodotti) => {
+    this.sottoscrizioneProdotti =  this.storeService.richiamoProdotti(this.nProdotti, this.ordinamento, this.categoria).subscribe((_prodotti) => {
     this.prodotti = _prodotti} )
 }
 
@@ -51,6 +51,7 @@ export class Home implements OnInit, OnDestroy{
   
   onShowCategoria(cat:string):void {
     this.categoria = cat;
+    this.prendiProdotti();
   }
 
   aggiungiAlCarrello(prodotto: IntProdotto):void {
