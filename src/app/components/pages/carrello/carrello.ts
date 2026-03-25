@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { intCarrello, ItemCarrello } from '../../../models/item-carrello';
 import { CurrencyPipe } from '@angular/common';
 import { RouterLink } from "@angular/router";
+import { HttpClient } from '@angular/common/http';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from "@angular/material/button";
@@ -9,6 +10,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 
 import { CarrelloService } from '../../../services/carrello/carrello-service';
+
+import {loadStripe} from '@stripe/stripe-js'
+
 
 
 @Component({
@@ -18,7 +22,7 @@ import { CarrelloService } from '../../../services/carrello/carrello-service';
   styleUrl: './carrello.css',
 })
 export class Carrello implements OnInit{
-constructor(private carrelloService: CarrelloService){}
+constructor(private carrelloService: CarrelloService, private http: HttpClient){}
 
   carrello: intCarrello = {
     items: [
@@ -75,6 +79,13 @@ constructor(private carrelloService: CarrelloService){}
 
   quantitaMeno1(item: ItemCarrello): void{
     this.carrelloService.rimuoviQuantita(item);
+  }
+  onCheckout(): void {
+    this.http.post(`http://localhost:4242/checkout`, {
+      items: this.carrello.items
+    }).subscribe(async (res: any) => {
+      let stripe = await loadStripe
+    })
   }
 }
 
