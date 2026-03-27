@@ -83,8 +83,9 @@ constructor(private carrelloService: CarrelloService, private http: HttpClient){
   onCheckout(): void {
     this.http.post(`http://localhost:4242/checkout`, {
       items: this.carrello.items
-    }).subscribe(async (res: any) => {
-      let stripe = await loadStripe
+    }).subscribe(async (risultato: any) => {
+      let stripe = await loadStripe('pk_test_51TEkcPQSXh2A1ak0YvBS07pS5ZIivdUVWBT5fEh0UrLH811pEs5Qsaz7rpYqezf0uC6rMYJdVwCzooXI0JE1cWIU00MLY5f2fn');
+      stripe?.redirectToCheckout({ sessionId: risultato.id });
     })
   }
 }
