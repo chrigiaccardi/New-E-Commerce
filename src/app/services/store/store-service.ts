@@ -6,7 +6,7 @@ import { IntProdotto } from '../../models/int-prodotto';
 const STORE_BASE_URL = 'https://fakestoreapi.com'
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'any',
 })
 export class storeService {
   constructor(private http: HttpClient) { }

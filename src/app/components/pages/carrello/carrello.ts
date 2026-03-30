@@ -21,6 +21,8 @@ import {loadStripe} from '@stripe/stripe-js'
   templateUrl: './carrello.html',
   styleUrl: './carrello.css',
 })
+  
+
 export class Carrello implements OnInit{
 constructor(private carrelloService: CarrelloService, private http: HttpClient){}
 

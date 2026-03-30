@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'any',
 })
 export class CarrelloService {
   carrello = new BehaviorSubject<intCarrello>({ items: [] })
